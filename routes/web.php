@@ -1,7 +1,43 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\GaleriController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\GaleriPublicController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ProdukController;
+use App\Http\Controllers\ProdukPublicController;
+use App\Http\Controllers\Admin\ArtikelController;
+use App\Http\Controllers\ArtikelPublicController;
 
-Route::get('/', function () {
-    return view('welcome');
+// ===== Route custom kita (beranda, galeri, admin) =====
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/galeri', [GaleriPublicController::class, 'index'])->name('galeri.index');
+Route::get('/produk', [ProdukPublicController::class, 'index'])->name('produk.index');
+Route::get('/artikel', [ArtikelPublicController::class, 'index'])->name('artikel.index');
+Route::get('/artikel/{artikel}', [ArtikelPublicController::class, 'show'])->name('artikel.show');
+
+
+Route::prefix('admin')->name('admin.')
+    ->middleware(['auth', 'can:manage-gallery'])
+    ->group(function () {
+        Route::resource('galeri', GaleriController::class);
+        Route::resource('produk', ProdukController::class);
+        Route::resource('artikel', ArtikelController::class);
+
+    });
+
+// ===== Route bawaan Breeze (biarkan, dipakai halaman edit profil) =====
+
+// Alias: beberapa file Breeze (verifikasi email, konfirmasi password) masih
+// manggil route('dashboard') secara internal. Daripada edit banyak file,
+// cukup arahkan nama 'dashboard' ke tempat yang sama dengan admin.galeri.index.
+Route::redirect('/dashboard', '/admin/galeri')->middleware('auth')->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+require __DIR__.'/auth.php';
