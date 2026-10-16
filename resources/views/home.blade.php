@@ -1,22 +1,9 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Beranda - PT Solusi Koneksi Anda</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<style>
-  body { font-family: 'Inter', sans-serif; }
-  .font-serif { font-family: 'Playfair Display', serif; }
-</style>
-</head>
-<body class="text-slate-800 antialiased">
+@extends('layouts.public')
 
-  @include('partials.navbar')
+@section('title', 'Beranda')
+@section('bodyClass', '')
 
+@section('content')
   {{-- Hero --}}
   <section class="relative h-[640px] flex items-end">
     <img src="{{ asset('images/hero-office.jpg') }}" alt="Kantor PT Solusi Koneksi Anda" class="absolute inset-0 w-full h-full object-cover">
@@ -169,11 +156,11 @@
       @endforelse
     </div>
   </section>
+@endsection
 
-  {{-- Preview Kontak --}}
+@section('customFooter')
   <footer class="bg-slate-800 text-white">
     <div class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 gap-12">
-
       <div>
         <div class="flex items-start justify-between mb-6 flex-wrap gap-3">
           <h3 class="text-lg font-semibold">Kontak Kami</h3>
@@ -230,8 +217,8 @@
       </div>
     </div>
   </footer>
+@endsection
 
+@push('scripts')
   @include('partials.lightbox')
-
-</body>
-</html>
+@endpush

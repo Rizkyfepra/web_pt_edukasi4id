@@ -1,22 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Produk / Layanan - PT Solusi Koneksi Anda</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<style>
-  body { font-family: 'Inter', sans-serif; }
-  .font-serif { font-family: 'Playfair Display', serif; }
-</style>
-</head>
-<body class="text-slate-800 antialiased flex flex-col min-h-screen bg-white">
+@extends('layouts.public')
 
-  @include('partials.navbar')
+@section('title', 'Produk / Layanan')
 
+@section('content')
   <main class="flex-1">
     <div class="max-w-7xl mx-auto px-6 py-16">
       <h1 class="font-serif text-3xl md:text-4xl font-semibold text-slate-900 mb-2">Produk / Layanan</h1>
@@ -77,8 +63,4 @@
       </div>
     </div>
   </main>
-
-  @include('partials.footer')
-
-</body>
-</html>
+@endsection
