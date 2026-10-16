@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\GaleriController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\GaleriPublicController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProdukController;
@@ -10,12 +11,14 @@ use App\Http\Controllers\ProdukPublicController;
 use App\Http\Controllers\Admin\ArtikelController;
 use App\Http\Controllers\ArtikelPublicController;
 
-// ===== Route custom kita (beranda, galeri, admin) =====
+// ===== Halaman publik company profile =====
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/galeri', [GaleriPublicController::class, 'index'])->name('galeri.index');
+Route::get('/profil', [PageController::class, 'profil'])->name('profil');
 Route::get('/produk', [ProdukPublicController::class, 'index'])->name('produk.index');
 Route::get('/artikel', [ArtikelPublicController::class, 'index'])->name('artikel.index');
 Route::get('/artikel/{artikel}', [ArtikelPublicController::class, 'show'])->name('artikel.show');
+Route::get('/galeri', [GaleriPublicController::class, 'index'])->name('galeri.index');
+Route::get('/kontak', [PageController::class, 'kontak'])->name('kontak');
 
 
 Route::prefix('admin')->name('admin.')

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>@yield('title', 'Dashboard') - Admin SMKN 4 Bogor</title>
+  <title>@yield('title', 'Dashboard') - Admin PT Solusi Koneksi Anda</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { font-family: 'Inter', system-ui, sans-serif; }
@@ -20,8 +20,8 @@
 
       {{-- Brand --}}
       <div class="h-16 flex items-center gap-3 px-5 border-b border-slate-800">
-       <img src="{{ asset('images/SMKN4.png') }}" alt="Logo SMKN 4 Kota Bogor" class="h-9 w-9">
-        <span class="text-white font-semibold text-sm leading-tight">SMKN 4 Bogor<br><span class="text-slate-400 font-normal text-xs">Admin Panel</span></span>
+       <img src="{{ asset('images/logo-ska.svg') }}" alt="Logo PT Solusi Koneksi Anda" class="h-9 w-9">
+        <span class="text-white font-semibold text-sm leading-tight">Solusi Koneksi Anda<br><span class="text-slate-400 font-normal text-xs">Admin Panel</span></span>
       </div>
 
       {{-- Menu --}}
@@ -31,7 +31,7 @@
         <a href="{{ route('admin.galeri.index') }}"
            class="block px-3 py-2.5 rounded-md text-sm transition
                   {{ request()->routeIs('admin.galeri.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 hover:text-white' }}">
-          Galeri Visual
+          Galeri Kegiatan
         </a>
 
         <a href="{{ route('admin.produk.index') }}"
@@ -54,7 +54,7 @@
 
       {{-- Footer sidebar --}}
       <div class="border-t border-slate-800 px-5 py-4 text-xs text-slate-500">
-        &copy; {{ date('Y') }} SMKN 4 Kota Bogor
+        &copy; {{ date('Y') }} PT Solusi Koneksi Anda
       </div>
     </aside>
 
