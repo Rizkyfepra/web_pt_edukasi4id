@@ -20,13 +20,19 @@
 
       {{-- Brand --}}
       <div class="h-16 flex items-center gap-3 px-5 border-b border-slate-800">
-       <img src="{{ asset('images/logo-ska.svg') }}" alt="Logo PT Solusi Koneksi Anda" class="h-9 w-9">
+        <img src="{{ asset('images/logo-ska.svg') }}" alt="Logo PT Solusi Koneksi Anda" class="h-9 w-9">
         <span class="text-white font-semibold text-sm leading-tight">Solusi Koneksi Anda<br><span class="text-slate-400 font-normal text-xs">Admin Panel</span></span>
       </div>
 
       {{-- Menu --}}
       <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1">
         <p class="px-3 text-[11px] uppercase tracking-wider text-slate-500 mb-2">Menu Utama</p>
+
+        <a href="{{ route('admin.profil.edit') }}"
+           class="block px-3 py-2.5 rounded-md text-sm transition
+                  {{ request()->routeIs('admin.profil.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 hover:text-white' }}">
+          Profil
+        </a>
 
         <a href="{{ route('admin.galeri.index') }}"
            class="block px-3 py-2.5 rounded-md text-sm transition

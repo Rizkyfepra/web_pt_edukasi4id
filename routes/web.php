@@ -1,15 +1,16 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\ArtikelController;
 use App\Http\Controllers\Admin\GaleriController;
+use App\Http\Controllers\Admin\ProdukController;
+use App\Http\Controllers\Admin\ProfilController;
+use App\Http\Controllers\ArtikelPublicController;
+use App\Http\Controllers\GaleriPublicController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\GaleriPublicController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\ProdukController;
 use App\Http\Controllers\ProdukPublicController;
-use App\Http\Controllers\Admin\ArtikelController;
-use App\Http\Controllers\ArtikelPublicController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
 
 // ===== Halaman publik company profile =====
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -20,7 +21,6 @@ Route::get('/artikel/{artikel}', [ArtikelPublicController::class, 'show'])->name
 Route::get('/galeri', [GaleriPublicController::class, 'index'])->name('galeri.index');
 Route::get('/kontak', [PageController::class, 'kontak'])->name('kontak');
 
-
 Route::prefix('admin')->name('admin.')
     ->middleware(['auth', 'can:manage-gallery'])
     ->group(function () {
@@ -28,13 +28,12 @@ Route::prefix('admin')->name('admin.')
         Route::resource('produk', ProdukController::class);
         Route::resource('artikel', ArtikelController::class);
 
+        // Profil: hanya edit & update (tanpa tambah / hapus)
+        Route::get('profil', [ProfilController::class, 'edit'])->name('profil.edit');
+        Route::put('profil', [ProfilController::class, 'update'])->name('profil.update');
     });
 
-// ===== Route bawaan Breeze (biarkan, dipakai halaman edit profil) =====
-
-// Alias: beberapa file Breeze (verifikasi email, konfirmasi password) masih
-// manggil route('dashboard') secara internal. Daripada edit banyak file,
-// cukup arahkan nama 'dashboard' ke tempat yang sama dengan admin.galeri.index.
+// ===== Route bawaan Breeze =====
 Route::redirect('/dashboard', '/admin/galeri')->middleware('auth')->name('dashboard');
 
 Route::middleware('auth')->group(function () {

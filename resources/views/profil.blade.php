@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Profil Perusahaan - PT Solusi Koneksi Anda</title>
+<title>{{ $profil->judul }} - PT Solusi Koneksi Anda</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
@@ -20,19 +20,12 @@
   <main class="flex-1">
     <section class="max-w-7xl mx-auto px-6 py-16 md:py-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
       <div>
-        <h1 class="font-serif text-3xl md:text-4xl font-semibold text-slate-900 mb-4">Profil Perusahaan</h1>
-        <p class="text-slate-600 leading-relaxed mb-4">
-          PT Solusi Koneksi Anda berdedikasi menyediakan layanan konektivitas dan solusi teknologi
-          yang inovatif, andal, dan berorientasi pada kebutuhan klien. Dengan tenaga profesional berpengalaman,
-          kami siap mendampingi setiap langkah transformasi digital bisnis Anda.
-        </p>
-        <p class="text-slate-600 leading-relaxed">
-          Kami berkomitmen membantu perusahaan mengembangkan usaha melalui infrastruktur jaringan yang kuat,
-          layanan internet berkualitas, solusi cloud, serta managed IT service yang responsif dan terpercaya.
-        </p>
+        <h1 class="font-serif text-3xl md:text-4xl font-semibold text-slate-900 mb-4">{{ $profil->judul }}</h1>
+        <p class="text-slate-600 leading-relaxed whitespace-pre-line">{{ $profil->isi }}</p>
       </div>
       <div>
-        <img src="{{ asset('images/profil-perusahaan.jpg') }}" alt="Profil PT Solusi Koneksi Anda"
+        <img src="{{ $profil->gambar ? Storage::url($profil->gambar) : asset('images/profil-perusahaan.jpg') }}"
+             alt="{{ $profil->judul }}"
              class="w-full h-64 md:h-80 object-cover rounded-2xl shadow-md">
       </div>
     </section>
